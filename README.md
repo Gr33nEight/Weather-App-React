@@ -1,18 +1,101 @@
-# React + Vite
+# Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Weather Dashboard** to aplikacja webowa w React, która pozwala przeglądać aktualną pogodę dla wybranych polskich miast. Aplikacja wykorzystuje nowoczesne technologie front-endowe oraz integrację z OpenWeatherMap API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funkcjonalności
 
-## React Compiler
+* Wyświetlanie listy miast z aktualną pogodą: temperatura, opis pogody, wilgotność, prędkość wiatru, ikona pogody.
+* Wyszukiwanie miast po nazwie w czasie rzeczywistym.
+* Przełącznik jednostek temperatury (Celsius/Fahrenheit), który zmienia jednostki globalnie.
+* Oznaczanie ulubionych miast za pomocą gwiazdki, przechowywanie stanu w Redux i localStorage.
+* Kliknięcie na kartę miasta przenosi do szczegółowego widoku danego miasta na całym ekranie.
+* Pobieranie rzeczywistych danych pogodowych z OpenWeatherMap API za pomocą Axios.
+* Układ kart miast w rzędach, wyśrodkowany na stronie, responsywny dla różnych rozmiarów ekranów.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## Technologie
 
-## Expanding the ESLint configuration
+* **React** – komponenty, hooki: `useState`, `useEffect`, `useMemo`, `useReducer`.
+* **Redux** – globalny stan aplikacji (`temperature`, `favorites`).
+* **React Router** – nawigacja między widokiem listy a szczegółowym widokiem miasta.
+* **Axios** – pobieranie danych z OpenWeatherMap API.
+* **CSS** – stylizacja komponentów i układ siatki kart.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Struktura projektu
+
+```
+src/
+├─ components/
+│  ├─ CityCard.jsx
+│  ├─ UnitSwitcher.jsx
+├─ pages/
+│  ├─ CityPage.jsx
+│  └─ Home.jsx
+├─ services/
+│  └─ weatherApi.js
+├─ store/
+│  ├─ index.js
+│  ├─ favoritesSlice.js
+│  └─ temperatureSlice.js
+├─ data/
+│  └─ cities.js
+├─ App.jsx
+├─ index.css
+└─ main.jsx
+```
+
+---
+
+## Instalacja
+
+1. Sklonuj repozytorium:
+
+```bash
+git clone <repo-url>
+cd weather-app
+```
+
+2. Zainstaluj zależności:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+3. Uruchom serwer developerski:
+
+```bash
+npm run dev
+```
+
+4. Otwórz przeglądarkę:
+
+```
+http://localhost:5174
+```
+
+---
+
+## Konfiguracja API
+
+1. Zarejestruj się na [OpenWeatherMap](https://openweathermap.org/api).
+2. Wygeneruj klucz API.
+3. Umieść go w pliku `src/services/weatherApi.js` w zmiennej `API_KEY`:
+
+```javascript
+const API_KEY = "TWÓJ_API_KEY";
+```
+
+---
+
+## Użytkowanie
+
+* Na stronie głównej zobaczysz listę polskich miast z aktualną pogodą.
+* Możesz wyszukiwać miasta w czasie rzeczywistym.
+* Przełącznik jednostek temperatury zmienia jednostki dla wszystkich kart.
+* Kliknięcie gwiazdki oznacza miasto jako ulubione.
+* Kliknięcie na kartę miasta otwiera pełnoekranowy widok szczegółowy wybranego miasta.
